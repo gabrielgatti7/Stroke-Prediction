@@ -82,7 +82,7 @@ preprocessor = ColumnTransformer(
 
 
 # ===================== Model Choice and Training =====================
-rf = Pipeline(steps=[('preprocessor', preprocessor),
+knn = Pipeline(steps=[('preprocessor', preprocessor),
                      ('classifier', KNeighborsClassifier(n_neighbors=5))
                       ])
 
@@ -90,11 +90,11 @@ rf = Pipeline(steps=[('preprocessor', preprocessor),
 stratified_kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 
 # Perform cross-validation
-accuracy = cross_val_score(rf, X_train_resh, y_train_resh, cv=stratified_kfold)
-recall = cross_val_score(rf, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='recall')
-precision = cross_val_score(rf, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='precision')
-f1s = cross_val_score(rf, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='f1_macro')
-roc = cross_val_score(rf, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='roc_auc')
+accuracy = cross_val_score(knn, X_train_resh, y_train_resh, cv=stratified_kfold)
+recall = cross_val_score(knn, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='recall')
+precision = cross_val_score(knn, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='precision')
+f1s = cross_val_score(knn, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='f1_macro')
+roc = cross_val_score(knn, X_train_resh, y_train_resh, cv=stratified_kfold, scoring='roc_auc')
 
 
 
